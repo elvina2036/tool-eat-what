@@ -8,6 +8,7 @@
   --soft-pink: #f7e6ff;
   --deep-purple: #883ecf;
   --brand-shadow: 0 8px 32px 0 #e0b7ff55;
+  font-size: 16px;
 }
 
 html, body {
@@ -28,9 +29,10 @@ html, body {
 }
 
 main {
-  max-width: 440px;
-  margin: 2.8em auto 2em auto;
-  padding: 0 1em;
+  max-width: 650px;
+  min-width: 310px;
+  margin: 3.5em auto 2em auto;
+  padding: 0 1.5em;
 }
 
 header {
@@ -38,14 +40,14 @@ header {
   margin-bottom: 2em;
 }
 .brand-logo {
-  font-size: 2.3em;
+  font-size: 2.6em;
   margin-bottom: .2em;
   color: var(--brand-purple);
   user-select: none;
 }
 .main-title {
   font-family: 'Montserrat', cursive;
-  font-size: 2.25em;
+  font-size: 2.5em;
   margin: 0;
   color: var(--deep-purple);
   letter-spacing: 1px;
@@ -57,30 +59,32 @@ header {
 }
 .subtitle {
   color: #ba89de;
-  font-size: 1.1em;
+  font-size: 1.2em;
   margin-top: .6em;
   margin-bottom: .6em;
 }
-.subtitle .en { font-size: .97em; color: #b9a7d1; }
+.subtitle .en { font-size: .99em; color: #b9a7d1; }
 
 nav {
   display: flex;
   justify-content: center;
-  gap: 1em;
+  gap: 1.1em;
   margin-bottom: 1.4em;
+  flex-wrap: wrap;
 }
 .tab {
   background: var(--brand-purple);
   border: none;
-  padding: 0.72em 1.7em;
+  padding: 0.8em 2.2em;
   border-radius: 22px 22px 0 0;
-  font-size: 1em;
+  font-size: 1.1em;
   color: #fff;
   font-weight: 700;
   cursor: pointer;
   transition: background .18s, box-shadow .15s;
   outline: none;
   box-shadow: 0 2px 8px #c3a0ff22;
+  margin-bottom: -2px;
 }
 .tab.active, .tab:hover {
   background: var(--deep-purple);
@@ -90,9 +94,10 @@ nav {
 
 .card {
   background: var(--card-bg);
-  border-radius: 28px;
+  border-radius: 32px;
   box-shadow: var(--brand-shadow);
-  padding: 1.3em 1.3em 2.2em 1.3em;
+  padding: 2em 2.2em 2.6em 2.2em;
+  margin-bottom: 1.7em;
 }
 
 fieldset {
@@ -104,22 +109,21 @@ legend {
   font-weight: 700;
   color: var(--deep-purple);
   margin-bottom: .5em;
-  font-size: 1.07em;
+  font-size: 1.08em;
 }
 
-/* ----- Choices.js 粉紫客製 ----- */
 .choices__inner, .choices__list--multiple .choices__item {
   background: #f7e6ff !important;
   border: 1.5px solid #c3a0ff !important;
   color: #7c4aa5 !important;
-  border-radius: 1.2em !important;
+  border-radius: 1.3em !important;
   font-weight: bold;
   font-size: 1em;
 }
 .choices__list--dropdown, .choices__list[aria-expanded] {
   background: #fff6ff !important;
   color: #7c4aa5;
-  border-radius: 1.2em;
+  border-radius: 1.3em;
   border: 1.5px solid #e0b7ff;
   box-shadow: 0 4px 16px #c3a0ff33;
   font-size: 1em;
@@ -138,8 +142,8 @@ legend {
   background: #c3a0ff !important;
   color: #fff !important;
   border-radius: 2em !important;
-  margin: .1em .28em .1em 0;
-  padding-right: 1.8em !important;
+  margin: .12em .35em .12em 0;
+  padding-right: 1.9em !important;
 }
 .choices__button {
   color: #fff !important;
@@ -151,20 +155,18 @@ legend {
   opacity: 1;
 }
 
-/* ----- /Choices.js 粉紫客製 ----- */
-
 .random-btn {
   display: block;
   width: 100%;
-  padding: 1.07em 0;
+  padding: 1.18em 0;
   background: linear-gradient(95deg, #c3a0ff 0%, #e0b7ff 70%, #f7e6ff 100%);
   border: none;
   color: #fff;
-  font-size: 1.18em;
+  font-size: 1.2em;
   font-family: 'Montserrat', 'Noto Sans TC', Arial, sans-serif;
   font-weight: 800;
   border-radius: 2em;
-  margin: 1.2em 0 .5em 0;
+  margin: 1.3em 0 .6em 0;
   cursor: pointer;
   box-shadow: 0 2px 8px #c3a0ff44;
   letter-spacing: 1px;
@@ -173,46 +175,49 @@ legend {
   overflow: hidden;
 }
 .random-btn:active { transform: scale(.98); }
-.random-btn .btn-emoji { font-size: 1.2em; margin-right: .3em; vertical-align: -0.14em; }
+.random-btn .btn-emoji { font-size: 1.22em; margin-right: .3em; vertical-align: -0.14em; }
 
 .result {
   text-align: center;
-  margin: 1.2em 0 0 0;
-  font-size: 1.27em;
+  margin: 1.35em 0 0 0;
+  font-size: 1.32em;
   color: var(--deep-purple);
   font-weight: 700;
   letter-spacing: 1px;
   min-height: 2em;
   border-radius: 1.1em;
+  word-break: break-all;
 }
 .result .pick-img {
-  margin-top: .7em;
-  max-width: 170px;
+  margin-top: .8em;
+  max-width: 250px;
+  width: 100%;
   border-radius: 1.1em;
   box-shadow: 0 2px 12px #e0b7ff44;
   border: 3px solid #fff;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  height: auto;
 }
 .pick-info {
   color: #7d38c0;
-  font-size: .98em;
+  font-size: 1.07em;
   margin-top: .4em;
-  margin-bottom: .5em;
+  margin-bottom: .55em;
   display: block;
   font-weight: 500;
 }
 .result .emoji {
-  font-size: 1.6em;
+  font-size: 1.65em;
   vertical-align: -0.18em;
   margin-right: .3em;
 }
 
 footer {
   text-align: center;
-  margin-top: 2.2em;
-  font-size: .98em;
+  margin-top: 2.4em;
+  font-size: 1.05em;
   color: #b199d1;
   letter-spacing: .5px;
 }
@@ -220,7 +225,35 @@ footer a { color: var(--brand-purple); text-decoration: none; }
 footer a:hover { color: var(--deep-purple); }
 .sep-dot { color: #dfbff1; margin: 0 .6em; font-weight: bold; }
 
-@media (max-width: 520px) {
-  main { max-width: 98vw; }
-  .card { padding: 1em .5em 1.5em .5em; }
+
+/* ---------- 低於 800px（平板/iPad） ---------- */
+@media (max-width: 800px) {
+  main {
+    max-width: 99vw;
+    padding: 0 .7em;
+  }
+  .card {
+    padding: 1.2em .7em 1.7em .7em;
+  }
+}
+
+/* ---------- 手機版：低於 500px（iPhone） ---------- */
+@media (max-width: 500px) {
+  .main-title { font-size: 1.45em; }
+  header { margin-bottom: 1.1em; }
+  .subtitle { font-size: 1em; }
+  nav { gap: .35em; }
+  .tab { font-size: .99em; padding: 0.62em 1em; }
+  .card { padding: .9em .3em 1.2em .3em; }
+  .random-btn { font-size: 1em; padding: 1em 0; }
+  .pick-info, .result { font-size: 1em; }
+  .result .pick-img { max-width: 98vw; }
+}
+
+/* ---------- 超大螢幕 2K/4K ---------- */
+@media (min-width: 1400px) {
+  main { max-width: 750px; font-size: 1.09em;}
+  .card { padding: 2.4em 3em 3em 3em; }
+  .main-title { font-size: 3.1em; }
+  .brand-logo { font-size: 3.2em; }
 }
