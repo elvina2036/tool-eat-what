@@ -1,80 +1,126 @@
-let foodList = []; // 全部食物資料
-const mealNames = { breakfast: "早餐", lunch: "午餐", dinner: "晚餐" };
-const mealEmojis = { breakfast: "🍳", lunch: "🍱", dinner: "🍜" };
-const foodsPath = "resource/foods.json";
-let currentMeal = "breakfast";
+let foods = [];
+let categories = [];
+let meals = [];
+let tags = [];
+const maps = { category: new Map(), meal: new Map(), tag: new Map() };
+let currentMeal = 'breakfast';
+let excludedFoods = [];
 
-// 載入 JSON
-async function loadFoods() {
-  const resp = await fetch(foodsPath);
-  foodList = await resp.json();
-  // 給每個食物一個索引（for 勾選用）
-  foodList = foodList.map((food, idx) => ({ ...food, idx }));
+async function loadAllData() {
+  [categories, meals, tags, foods] = await Promise.all([
+    fetch('../resource/categories.json').then(res => res.json()),
+    fetch('../resource/meals.json').then(res => res.json()),
+    fetch('../resource/tags.json').then(res => res.json()),
+    fetch('../resource/foods.json').then(res => res.json())
+  ]);
+  categories.forEach(c => maps.category.set(c.id, c));
+  meals.forEach(m => maps.meal.set(m.id, m));
+  tags.forEach(t => maps.tag.set(t.id, t));
+  foods = foods.map((f, idx) => ({ ...f, idx }));
 }
 
-// 選出可用食物
-function getAvailableFoods(meal) {
-  return foodList.filter(item => item.meals.includes(meal));
+function getFoodsByMeal(mealId) {
+  return foods.filter(f => f.meals.includes(mealId));
 }
 
-// 產生勾選選單
-function renderChoices(meal) {
-  const choicesDiv = document.getElementById('choices-list');
-  choicesDiv.innerHTML = '';
-  const available = getAvailableFoods(meal);
-  available.forEach(item => {
-    const label = document.createElement('label');
-    label.className = 'choice-label';
-    label.innerHTML = `<input type="checkbox" value="${item.idx}"> ${item.name}`;
-    choicesDiv.appendChild(label);
+function renderMealTabs() {
+  const nav = document.getElementById('meal-tabs');
+  nav.innerHTML = '';
+  meals.forEach(meal => {
+    const btn = document.createElement('button');
+    btn.className = 'tab' + (meal.id === currentMeal ? ' active' : '');
+    btn.textContent = `${meal.emoji} ${meal.name}`;
+    btn.setAttribute('data-meal', meal.id);
+    btn.onclick = () => {
+      if (meal.id !== currentMeal) {
+        currentMeal = meal.id;
+        excludedFoods = [];
+        renderMealTabs();
+        renderAutocomplete(currentMeal);
+        document.getElementById('result').innerHTML = '';
+      }
+    };
+    nav.appendChild(btn);
   });
 }
 
-// 取得沒被勾掉的食物
-function getUncheckedFoodList(meal) {
-  const checked = Array.from(document.querySelectorAll('#choices-list input[type=checkbox]:checked'))
-    .map(cb => Number(cb.value));
-  return getAvailableFoods(meal).filter(item => !checked.includes(item.idx));
+function renderAutocomplete(meal) {
+  const available = getFoodsByMeal(meal);
+  const inputDiv = document.getElementById('autocomplete-input');
+  const tagDiv = document.getElementById('excluded-tags');
+  inputDiv.value = '';
+  tagDiv.innerHTML = '';
+  excludedFoods.forEach(idx => {
+    const item = available.find(f => f.idx === idx);
+    if (!item) return;
+    const tag = document.createElement('span');
+    tag.className = 'ex-tag';
+    tag.innerText = item.name;
+    const delBtn = document.createElement('button');
+    delBtn.innerText = '✕';
+    delBtn.onclick = () => {
+      excludedFoods = excludedFoods.filter(id => id !== idx);
+      renderAutocomplete(meal);
+    };
+    tag.appendChild(delBtn);
+    tagDiv.appendChild(tag);
+  });
+
+  let datalist = document.getElementById('foods-datalist');
+  if (!datalist) {
+    datalist = document.createElement('datalist');
+    datalist.id = 'foods-datalist';
+    document.body.appendChild(datalist);
+  }
+  datalist.innerHTML = '';
+  available
+    .filter(f => !excludedFoods.includes(f.idx))
+    .forEach(f => {
+      const option = document.createElement('option');
+      option.value = f.name;
+      datalist.appendChild(option);
+    });
+  inputDiv.setAttribute('list', 'foods-datalist');
 }
 
-// 顯示結果
 function showResult(meal) {
   const resultDiv = document.getElementById('result');
-  const options = getUncheckedFoodList(meal);
+  const options = getFoodsByMeal(meal).filter(item => !excludedFoods.includes(item.idx));
   if (options.length === 0) {
     resultDiv.innerHTML = "你是不是太挑食啦？沒東西剩下可以選了！🥲";
     return;
   }
   const pick = options[Math.floor(Math.random() * options.length)];
-  resultDiv.innerHTML = `<span class="emoji">${mealEmojis[meal]}</span> ${mealNames[meal]}建議：<span>${pick.name}</span>`;
+  const cat = maps.category.get(pick.category);
+  const tagNames = pick.tags.map(id => maps.tag.get(id)?.name || id).join("、");
+  resultDiv.innerHTML = `
+    <span class="emoji">${maps.meal.get(meal)?.emoji || ''}</span>
+    <strong>${maps.meal.get(meal)?.name || ''}建議：</strong>
+    <span>${pick.name}</span>
+    <div class="pick-info">
+      分類：${cat?.icon || ''} ${cat?.name || pick.category}<br>
+      標籤：${tagNames}
+    </div>
+    <img src="${pick.image}" alt="${pick.name}" class="pick-img">
+  `;
 }
 
-// Tab 切換
-function setActiveTab(tabElem) {
-  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-  tabElem.classList.add('active');
-}
-
-// 主程式啟動
 document.addEventListener('DOMContentLoaded', async () => {
-  await loadFoods();
+  await loadAllData();
+  renderMealTabs();
+  renderAutocomplete(currentMeal);
 
-  renderChoices(currentMeal);
-
-  // Tab 切換
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', e => {
-      const meal = tab.getAttribute('data-meal');
-      if (meal !== currentMeal) {
-        currentMeal = meal;
-        setActiveTab(tab);
-        renderChoices(currentMeal);
-        document.getElementById('result').innerHTML = '';
-      }
-    });
+  document.getElementById('autocomplete-input').addEventListener('change', e => {
+    const val = e.target.value.trim();
+    const available = getFoodsByMeal(currentMeal);
+    const match = available.find(f => f.name === val && !excludedFoods.includes(f.idx));
+    if (match) {
+      excludedFoods.push(match.idx);
+      e.target.value = '';
+      renderAutocomplete(currentMeal);
+    }
   });
 
-  // 隨機決定
   document.getElementById('random-btn').addEventListener('click', () => {
     showResult(currentMeal);
   });

@@ -1,0 +1,5 @@
+[
+  { "id": "taiwan", "name": "台式", "icon": "🥢" },
+  { "id": "western", "name": "西式", "icon": "🍔" },
+  { "id": "healthy", "name": "輕食", "icon": "🥗" }
+]

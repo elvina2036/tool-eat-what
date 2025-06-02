@@ -1,0 +1,5 @@
+[
+  { "id": "breakfast", "name": "早餐", "emoji": "🍳" },
+  { "id": "lunch", "name": "午餐", "emoji": "🍱" },
+  { "id": "dinner", "name": "晚餐", "emoji": "🍜" }
+]

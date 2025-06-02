@@ -1,0 +1,8 @@
+[
+  { "id": "noodle", "name": "麵食" },
+  { "id": "beef", "name": "牛肉" },
+  { "id": "egg", "name": "蛋" },
+  { "id": "soy", "name": "豆漿" },
+  { "id": "healthy", "name": "健康" },
+  { "id": "cheese", "name": "起司" }
+]

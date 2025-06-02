@@ -1,24 +1,31 @@
 [
-  { "name": "蛋餅+豆漿", "meals": ["breakfast"] },
-  { "name": "美式漢堡", "meals": ["breakfast", "lunch"] },
-  { "name": "薯餅吐司", "meals": ["breakfast"] },
-  { "name": "鹹豆漿", "meals": ["breakfast"] },
-  { "name": "燒餅油條", "meals": ["breakfast"] },
-  { "name": "飯糰", "meals": ["breakfast", "lunch"] },
-  { "name": "水果優格", "meals": ["breakfast"] },
-  { "name": "雞腿便當", "meals": ["lunch"] },
-  { "name": "牛肉麵", "meals": ["lunch", "dinner"] },
-  { "name": "韓式拌飯", "meals": ["lunch", "dinner"] },
-  { "name": "排骨飯", "meals": ["lunch"] },
-  { "name": "壽司", "meals": ["lunch", "dinner"] },
-  { "name": "沙拉", "meals": ["lunch", "dinner"] },
-  { "name": "燉飯", "meals": ["lunch", "dinner"] },
-  { "name": "泰式炒河粉", "meals": ["lunch", "dinner"] },
-  { "name": "燒烤", "meals": ["dinner"] },
-  { "name": "牛排", "meals": ["dinner"] },
-  { "name": "火鍋", "meals": ["dinner"] },
-  { "name": "蚵仔煎", "meals": ["dinner"] },
-  { "name": "義大利麵", "meals": ["lunch", "dinner"] },
-  { "name": "麻辣鍋", "meals": ["dinner"] },
-  { "name": "臭豆腐", "meals": ["dinner"] }
+  {
+    "name": "蛋餅+豆漿",
+    "meals": ["breakfast"],
+    "category": "taiwan",
+    "image": "https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg",
+    "tags": ["egg", "soy"]
+  },
+  {
+    "name": "美式漢堡",
+    "meals": ["breakfast", "lunch"],
+    "category": "western",
+    "image": "https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg",
+    "tags": ["cheese", "egg"]
+  },
+  {
+    "name": "牛肉麵",
+    "meals": ["lunch", "dinner"],
+    "category": "taiwan",
+    "image": "https://images.pexels.com/photos/2474668/pexels-photo-2474668.jpeg",
+    "tags": ["noodle", "beef"]
+  },
+  {
+    "name": "沙拉",
+    "meals": ["lunch", "dinner"],
+    "category": "healthy",
+    "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+    "tags": ["healthy"]
+  }
+  // ...更多
 ]
