@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <title>三餐隨機決定器 | What2Eat</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="style/main.css">
+  <!-- 字體 -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Choices.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+  <link rel="stylesheet" href="style/main.css">
 </head>
 <body>
   <div class="site-bg"></div>
@@ -18,9 +21,8 @@
     <nav id="meal-tabs"></nav>
     <section class="card">
       <fieldset>
-        <legend>今天不想吃（可輸入關鍵字或選多個）：</legend>
-        <input id="autocomplete-input" placeholder="輸入或選取食物名稱..." autocomplete="off">
-        <div id="excluded-tags"></div>
+        <legend>今天不想吃（可多選）：</legend>
+        <select id="exclude-select" multiple></select>
       </fieldset>
       <button class="random-btn" id="random-btn">
         <span class="btn-emoji">🎲</span> 隨機決定
@@ -34,6 +36,8 @@
       </p>
     </footer>
   </main>
+  <!-- Choices.js JS -->
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
   <script src="script/main.js"></script>
 </body>
 </html>

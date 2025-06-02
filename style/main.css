@@ -106,52 +106,52 @@ legend {
   margin-bottom: .5em;
   font-size: 1.07em;
 }
-#autocomplete-input {
-  width: 100%;
-  padding: .8em;
-  font-size: 1em;
-  border: 1.5px solid var(--brand-purple);
-  border-radius: 1.1em;
-  margin-bottom: .7em;
-  box-sizing: border-box;
-  background: var(--soft-pink);
-  color: #813fd1;
-  font-weight: 600;
-  outline: none;
-  transition: border .15s;
-}
-#autocomplete-input:focus { border-color: var(--deep-purple); }
 
-#excluded-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .4em;
-  margin-bottom: .6em;
+/* ----- Choices.js 粉紫客製 ----- */
+.choices__inner, .choices__list--multiple .choices__item {
+  background: #f7e6ff !important;
+  border: 1.5px solid #c3a0ff !important;
+  color: #7c4aa5 !important;
+  border-radius: 1.2em !important;
+  font-weight: bold;
+  font-size: 1em;
+}
+.choices__list--dropdown, .choices__list[aria-expanded] {
+  background: #fff6ff !important;
+  color: #7c4aa5;
+  border-radius: 1.2em;
+  border: 1.5px solid #e0b7ff;
+  box-shadow: 0 4px 16px #c3a0ff33;
+  font-size: 1em;
+}
+.choices__item--choice {
+  background: transparent !important;
+  color: #7c4aa5 !important;
+  border-radius: 1em !important;
+  transition: background .13s;
+}
+.choices__item--choice.is-highlighted {
+  background: #e0b7ff !important;
+  color: #fff !important;
+}
+.choices__list--multiple .choices__item {
+  background: #c3a0ff !important;
+  color: #fff !important;
+  border-radius: 2em !important;
+  margin: .1em .28em .1em 0;
+  padding-right: 1.8em !important;
+}
+.choices__button {
+  color: #fff !important;
+  opacity: 0.8;
+  margin-left: .5em;
+}
+.choices__button:hover {
+  color: #f7c8e0 !important;
+  opacity: 1;
 }
 
-.ex-tag {
-  background: var(--brand-purple);
-  color: #fff;
-  border-radius: 2em;
-  padding: .32em 1.2em .32em .92em;
-  font-size: 1em;
-  display: flex;
-  align-items: center;
-  margin-bottom: .15em;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-.ex-tag button {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1em;
-  margin-left: .7em;
-  cursor: pointer;
-  font-weight: 900;
-  transition: color .14s;
-}
-.ex-tag button:hover { color: var(--accent-pink); }
+/* ----- /Choices.js 粉紫客製 ----- */
 
 .random-btn {
   display: block;
