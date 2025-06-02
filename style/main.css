@@ -1,0 +1,124 @@
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Noto Sans TC', 'Segoe UI', Arial, sans-serif;
+  color: #222;
+  min-height: 100vh;
+  margin: 0;
+}
+.container {
+  max-width: 430px;
+  margin: 3em auto 2em auto;
+  background: #fff6fb;
+  border-radius: 30px;
+  box-shadow: 0 4px 20px #ddd9fa99;
+  padding: 2.2em 2em 2em 2em;
+}
+header {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+h1 {
+  margin: 0;
+  font-size: 2em;
+  color: #6a57d5;
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+.subtitle {
+  color: #a47acc;
+  font-size: 1.1em;
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 1.5em;
+}
+.tab {
+  background: #b8c1ec;
+  border: none;
+  padding: 0.7em 1.7em;
+  border-radius: 16px 16px 0 0;
+  font-size: 1em;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background .15s;
+  outline: none;
+}
+.tab.active, .tab:hover {
+  background: #6a57d5;
+}
+section {
+  background: #f6eaf7;
+  border-radius: 20px;
+  padding: 1em 1em 1.5em 1em;
+  box-shadow: 0 0 10px #eee2f988;
+}
+fieldset {
+  border: none;
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+legend {
+  font-weight: bold;
+  color: #a47acc;
+  margin-bottom: .5em;
+}
+#choices-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6em 1em;
+  margin-top: .6em;
+}
+.choice-label {
+  display: flex;
+  align-items: center;
+  padding: .4em .8em;
+  background: #efe0f7;
+  border-radius: 1em;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 1px 2px #f6eaf766;
+  transition: background .1s;
+}
+.choice-label input[type=checkbox] {
+  margin-right: .4em;
+  accent-color: #6a57d5;
+}
+.random-btn {
+  display: block;
+  width: 100%;
+  padding: .9em 0;
+  background: linear-gradient(90deg, #b8c1ec 0%, #a47acc 100%);
+  border: none;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 2em;
+  margin: 1.2em 0 .5em 0;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #b8c1ec33;
+  transition: background .2s;
+}
+.random-btn:hover {
+  background: linear-gradient(90deg, #6a57d5 0%, #b8c1ec 100%);
+}
+.result {
+  text-align: center;
+  margin: 1.4em 0 0 0;
+  font-size: 1.5em;
+  color: #6a57d5;
+  font-weight: bold;
+  letter-spacing: 1px;
+  min-height: 2em;
+}
+footer {
+  text-align: center;
+  margin-top: 2.5em;
+  font-size: .95em;
+  color: #bbb;
+}
+footer a { color: #b8c1ec; text-decoration: none; }
