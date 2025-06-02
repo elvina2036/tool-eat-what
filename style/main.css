@@ -286,3 +286,76 @@ footer a:hover { color: var(--deep-purple); }
   .brand-logo { font-size: 2.9em; }
   .result .pick-img { width: 300px;}
 }
+
+/* 讓 choices 下拉與容器一致 */
+#exclude-select,
+.choices,
+.choices__inner {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* 透明背景&淡色文字，強烈現代感 */
+.choices__inner {
+  background: rgba(247,230,255, 0.6) !important;   /* 粉紫淡透明 */
+  border: 1.7px solid #c3a0ff !important;
+  color: #8339a3 !important;
+  border-radius: 1.05em !important;
+  font-weight: bold;
+  font-size: 1.05em;
+  padding: .65em 1.1em !important;
+  min-height: 44px;
+  box-shadow: 0 2px 18px #e0b7ff33;
+  transition: background .17s, border .14s;
+}
+
+/* 讓 placeholder 也透明、字清楚 */
+.choices__input,
+.choices__inner input,
+.choices__input--cloned {
+  background: transparent !important;
+  color: #8339a3 !important;
+  font-size: 1.05em !important;
+  font-weight: 600 !important;
+  padding: .1em 0 !important;
+}
+
+.choices__input::placeholder {
+  color: #ba89decc !important;
+  opacity: 1;
+  font-weight: 400;
+}
+
+/* 下拉清單選項同寬/半透明、hover 美化 */
+.choices__list--dropdown, .choices__list[aria-expanded] {
+  background: rgba(255,246,255,0.95) !important;
+  color: #7c4aa5;
+  border-radius: 1.05em;
+  border: 1.5px solid #e0b7ff;
+  box-shadow: 0 4px 16px #c3a0ff33;
+  font-size: 1em;
+  left: 0 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* 選中的 tag 也透明化一點 */
+.choices__list--multiple .choices__item {
+  background: rgba(195,160,255,0.92) !important;
+  color: #fff !important;
+  border-radius: 2em !important;
+  margin: .1em .24em .1em 0;
+  padding-right: 1.7em !important;
+  font-size: 1em;
+  box-shadow: 0 1px 4px #e0b7ff33;
+}
+
+/* 聚焦時微亮 */
+.choices__inner.is-focused {
+  border: 2.2px solid #a47acc !important;
+  background: rgba(247,230,255,0.9) !important;
+  box-shadow: 0 2px 28px #e0b7ff55;
+}
