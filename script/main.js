@@ -8,10 +8,10 @@ let excludedFoods = [];
 
 async function loadAllData() {
   [categories, meals, tags, foods] = await Promise.all([
-    fetch('../resource/categories.json').then(res => res.json()),
-    fetch('../resource/meals.json').then(res => res.json()),
-    fetch('../resource/tags.json').then(res => res.json()),
-    fetch('../resource/foods.json').then(res => res.json())
+    fetch('resource/categories.json').then(res => res.json()),
+    fetch('resource/meals.json').then(res => res.json()),
+    fetch('resource/tags.json').then(res => res.json()),
+    fetch('resource/foods.json').then(res => res.json())
   ]);
   categories.forEach(c => maps.category.set(c.id, c));
   meals.forEach(m => maps.meal.set(m.id, m));
