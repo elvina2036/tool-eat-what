@@ -29,25 +29,27 @@ html, body {
 }
 
 main {
-  max-width: 650px;
-  min-width: 310px;
+  width: 100%;
+  max-width: 540px;
+  min-width: 0;
   margin: 3.5em auto 2em auto;
-  padding: 0 1.5em;
+  padding: 0 1.1em;
+  box-sizing: border-box;
 }
 
 header {
   text-align: center;
-  margin-bottom: 2em;
+  margin-bottom: 1.2em;
 }
 .brand-logo {
-  font-size: 2.6em;
+  font-size: 2.2em;
   margin-bottom: .2em;
   color: var(--brand-purple);
   user-select: none;
 }
 .main-title {
   font-family: 'Montserrat', cursive;
-  font-size: 2.5em;
+  font-size: 2em;
   margin: 0;
   color: var(--deep-purple);
   letter-spacing: 1px;
@@ -59,25 +61,25 @@ header {
 }
 .subtitle {
   color: #ba89de;
-  font-size: 1.2em;
+  font-size: 1.12em;
   margin-top: .6em;
   margin-bottom: .6em;
 }
-.subtitle .en { font-size: .99em; color: #b9a7d1; }
+.subtitle .en { font-size: .98em; color: #b9a7d1; }
 
 nav {
   display: flex;
   justify-content: center;
-  gap: 1.1em;
-  margin-bottom: 1.4em;
+  gap: .5em;
+  margin-bottom: 1.2em;
   flex-wrap: wrap;
 }
 .tab {
   background: var(--brand-purple);
   border: none;
-  padding: 0.8em 2.2em;
-  border-radius: 22px 22px 0 0;
-  font-size: 1.1em;
+  padding: 0.72em 1.45em;
+  border-radius: 18px 18px 0 0;
+  font-size: 1.01em;
   color: #fff;
   font-weight: 700;
   cursor: pointer;
@@ -94,39 +96,61 @@ nav {
 
 .card {
   background: var(--card-bg);
-  border-radius: 32px;
+  border-radius: 22px;
   box-shadow: var(--brand-shadow);
-  padding: 2em 2.2em 2.6em 2.2em;
+  padding: 1.1em 1.2em 2em 1.2em;
   margin-bottom: 1.7em;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 fieldset {
   border: none;
-  margin: 0 0 1.2em 0;
+  margin: 0 0 1.1em 0;
   padding: 0;
 }
 legend {
   font-weight: 700;
   color: var(--deep-purple);
   margin-bottom: .5em;
-  font-size: 1.08em;
+  font-size: 1.03em;
 }
 
-.choices__inner, .choices__list--multiple .choices__item {
+/* Choices.js + select 多選自適應同寬 */
+#exclude-select,
+.choices__inner, 
+.choices__list--multiple .choices__item {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.choices {
+  width: 100% !important;
+  min-width: 0;
+}
+.choices__inner {
   background: #f7e6ff !important;
   border: 1.5px solid #c3a0ff !important;
   color: #7c4aa5 !important;
-  border-radius: 1.3em !important;
+  border-radius: 1.05em !important;
   font-weight: bold;
   font-size: 1em;
+  padding: .6em .9em !important;
+  min-height: 48px;
 }
 .choices__list--dropdown, .choices__list[aria-expanded] {
   background: #fff6ff !important;
   color: #7c4aa5;
-  border-radius: 1.3em;
+  border-radius: 1.05em;
   border: 1.5px solid #e0b7ff;
   box-shadow: 0 4px 16px #c3a0ff33;
   font-size: 1em;
+  left: 0 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
 }
 .choices__item--choice {
   background: transparent !important;
@@ -142,8 +166,9 @@ legend {
   background: #c3a0ff !important;
   color: #fff !important;
   border-radius: 2em !important;
-  margin: .12em .35em .12em 0;
-  padding-right: 1.9em !important;
+  margin: .1em .25em .1em 0;
+  padding-right: 1.7em !important;
+  font-size: 1em;
 }
 .choices__button {
   color: #fff !important;
@@ -158,15 +183,15 @@ legend {
 .random-btn {
   display: block;
   width: 100%;
-  padding: 1.18em 0;
+  padding: 1em 0;
   background: linear-gradient(95deg, #c3a0ff 0%, #e0b7ff 70%, #f7e6ff 100%);
   border: none;
   color: #fff;
-  font-size: 1.2em;
+  font-size: 1.09em;
   font-family: 'Montserrat', 'Noto Sans TC', Arial, sans-serif;
   font-weight: 800;
   border-radius: 2em;
-  margin: 1.3em 0 .6em 0;
+  margin: 1.1em 0 .5em 0;
   cursor: pointer;
   box-shadow: 0 2px 8px #c3a0ff44;
   letter-spacing: 1px;
@@ -175,12 +200,12 @@ legend {
   overflow: hidden;
 }
 .random-btn:active { transform: scale(.98); }
-.random-btn .btn-emoji { font-size: 1.22em; margin-right: .3em; vertical-align: -0.14em; }
+.random-btn .btn-emoji { font-size: 1.15em; margin-right: .28em; vertical-align: -0.14em; }
 
 .result {
   text-align: center;
-  margin: 1.35em 0 0 0;
-  font-size: 1.32em;
+  margin: 1.12em 0 0 0;
+  font-size: 1.13em;
   color: var(--deep-purple);
   font-weight: 700;
   letter-spacing: 1px;
@@ -189,10 +214,10 @@ legend {
   word-break: break-all;
 }
 .result .pick-img {
-  margin-top: .8em;
-  max-width: 250px;
-  width: 100%;
-  border-radius: 1.1em;
+  margin-top: .6em;
+  max-width: 98%;
+  width: 240px;
+  border-radius: 1em;
   box-shadow: 0 2px 12px #e0b7ff44;
   border: 3px solid #fff;
   display: block;
@@ -202,22 +227,22 @@ legend {
 }
 .pick-info {
   color: #7d38c0;
-  font-size: 1.07em;
-  margin-top: .4em;
-  margin-bottom: .55em;
+  font-size: 1em;
+  margin-top: .33em;
+  margin-bottom: .45em;
   display: block;
   font-weight: 500;
 }
 .result .emoji {
-  font-size: 1.65em;
+  font-size: 1.35em;
   vertical-align: -0.18em;
-  margin-right: .3em;
+  margin-right: .23em;
 }
 
 footer {
   text-align: center;
-  margin-top: 2.4em;
-  font-size: 1.05em;
+  margin-top: 2em;
+  font-size: 1em;
   color: #b199d1;
   letter-spacing: .5px;
 }
@@ -226,34 +251,38 @@ footer a:hover { color: var(--deep-purple); }
 .sep-dot { color: #dfbff1; margin: 0 .6em; font-weight: bold; }
 
 
-/* ---------- 低於 800px（平板/iPad） ---------- */
-@media (max-width: 800px) {
+/* --- iPad/小筆電 --- */
+@media (max-width: 900px) {
   main {
     max-width: 99vw;
-    padding: 0 .7em;
+    padding: 0 .6em;
   }
   .card {
-    padding: 1.2em .7em 1.7em .7em;
+    padding: 1em .5em 1.3em .5em;
   }
+  .result .pick-img { width: 170px; }
 }
 
-/* ---------- 手機版：低於 500px（iPhone） ---------- */
-@media (max-width: 500px) {
-  .main-title { font-size: 1.45em; }
-  header { margin-bottom: 1.1em; }
-  .subtitle { font-size: 1em; }
-  nav { gap: .35em; }
-  .tab { font-size: .99em; padding: 0.62em 1em; }
-  .card { padding: .9em .3em 1.2em .3em; }
-  .random-btn { font-size: 1em; padding: 1em 0; }
-  .pick-info, .result { font-size: 1em; }
-  .result .pick-img { max-width: 98vw; }
+/* --- 手機橫幅&直幅 --- */
+@media (max-width: 540px) {
+  main { padding: 0 .1em; }
+  .card { border-radius: 12px; }
+  .main-title { font-size: 1.22em; }
+  .brand-logo { font-size: 1.3em; }
+  .subtitle { font-size: .95em; }
+  nav { gap: .22em; }
+  .tab { font-size: .92em; padding: 0.6em .8em; }
+  .card { padding: .7em .2em 1.1em .2em; }
+  .random-btn { font-size: .99em; padding: .8em 0; }
+  .pick-info, .result { font-size: .97em; }
+  .result .pick-img { width: 99vw; min-width: 110px; }
 }
 
-/* ---------- 超大螢幕 2K/4K ---------- */
-@media (min-width: 1400px) {
-  main { max-width: 750px; font-size: 1.09em;}
-  .card { padding: 2.4em 3em 3em 3em; }
-  .main-title { font-size: 3.1em; }
-  .brand-logo { font-size: 3.2em; }
+/* --- 2K/4K 大螢幕 --- */
+@media (min-width: 1100px) {
+  main { max-width: 720px; font-size: 1.11em;}
+  .card { padding: 2.3em 3.2em 3em 3.2em; }
+  .main-title { font-size: 2.3em; }
+  .brand-logo { font-size: 2.9em; }
+  .result .pick-img { width: 300px;}
 }
