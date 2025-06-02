@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>三餐隨機決定器</title>
+  <style>
+    body { font-family: 'Segoe UI', 'Noto Sans TC', Arial, sans-serif; background: #fafaff; color: #333; text-align: center; padding: 3em; }
+    .meal-btn { font-size: 1.2em; margin: 1em; padding: 1em 2em; border: none; border-radius: 10px; background: #b8c1ec; cursor: pointer; transition: background 0.2s; }
+    .meal-btn:hover { background: #a0a7d9; }
+    .result { font-size: 2em; margin-top: 1.5em; color: #553c9a; font-weight: bold; letter-spacing: 2px; }
+    .emoji { font-size: 2em; vertical-align: middle; }
+  </style>
+</head>
+<body>
+  <h1>今天三餐吃什麼？</h1>
+  <div>
+    <button class="meal-btn" onclick="randomPick('breakfast')">決定早餐 🍳</button>
+    <button class="meal-btn" onclick="randomPick('lunch')">決定午餐 🍱</button>
+    <button class="meal-btn" onclick="randomPick('dinner')">決定晚餐 🍜</button>
+  </div>
+  <div class="result" id="result"></div>
+
+  <script>
+    // 三餐食物選項
+    const meals = {
+      breakfast: [
+        "蛋餅+豆漿", "美式漢堡", "薯餅吐司", "鹹豆漿", "麥片牛奶", "燒餅油條", "歐姆蛋", "蔥抓餅", "飯糰", "水果優格"
+      ],
+      lunch: [
+        "雞腿便當", "牛肉麵", "韓式拌飯", "拉麵", "壽司", "鹽水雞", "排骨飯", "沙拉", "燉飯", "泰式炒河粉", "海南雞飯"
+      ],
+      dinner: [
+        "燒烤", "牛排", "火鍋", "蚵仔煎", "義大利麵", "韓式炸雞", "自助餐", "炒麵", "麻辣鍋", "壽喜燒", "臭豆腐"
+      ]
+    };
+
+    function randomPick(type) {
+      const foodList = meals[type];
+      const pick = foodList[Math.floor(Math.random() * foodList.length)];
+      const mealName = { breakfast: '早餐', lunch: '午餐', dinner: '晚餐' }[type];
+      const emoji = { breakfast: '🍳', lunch: '🍱', dinner: '🍜' }[type];
+      document.getElementById('result').innerHTML =
+        `<span class="emoji">${emoji}</span> ${mealName}建議：<span>${pick}</span>`;
+    }
+  </script>
+</body>
+</html>
