@@ -4,27 +4,265 @@
     "meals": ["breakfast"],
     "category": "taiwan",
     "image": "https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg",
-    "tags": ["egg", "soy"]
+    "tags": ["egg", "soy", "taiwan"]
   },
   {
-    "name": "美式漢堡",
-    "meals": ["breakfast", "lunch"],
+    "name": "鹹粥+油條",
+    "meals": ["breakfast"],
+    "category": "taiwan",
+    "image": "https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg",
+    "tags": ["rice", "fried", "taiwan"]
+  },
+  {
+    "name": "歐姆蛋早餐",
+    "meals": ["breakfast"],
     "category": "western",
+    "image": "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg",
+    "tags": ["egg", "cheese", "vegetable", "western"]
+  },
+  {
+    "name": "美式鬆餅",
+    "meals": ["breakfast"],
+    "category": "dessert",
+    "image": "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg",
+    "tags": ["egg", "milk", "sweet", "pastry"]
+  },
+  {
+    "name": "漢堡薯條套餐",
+    "meals": ["breakfast", "lunch"],
+    "category": "fastfood",
     "image": "https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg",
-    "tags": ["cheese", "egg"]
+    "tags": ["burger", "fries", "cheese", "western", "fastfood"]
+  },
+  {
+    "name": "壽司拼盤",
+    "meals": ["lunch", "dinner"],
+    "category": "japanese",
+    "image": "https://images.pexels.com/photos/357756/pexels-photo-357756.jpeg",
+    "tags": ["rice", "seafood", "japanese"]
+  },
+  {
+    "name": "豚骨拉麵",
+    "meals": ["lunch", "dinner"],
+    "category": "japanese",
+    "image": "https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg",
+    "tags": ["noodle", "pork", "soup", "japanese"]
   },
   {
     "name": "牛肉麵",
     "meals": ["lunch", "dinner"],
     "category": "taiwan",
     "image": "https://images.pexels.com/photos/2474668/pexels-photo-2474668.jpeg",
-    "tags": ["noodle", "beef"]
+    "tags": ["noodle", "beef", "soup", "taiwan"]
   },
   {
-    "name": "沙拉",
+    "name": "雞腿便當",
+    "meals": ["lunch"],
+    "category": "bento",
+    "image": "https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg",
+    "tags": ["rice", "chicken", "bento"]
+  },
+  {
+    "name": "韓式石鍋拌飯",
+    "meals": ["lunch", "dinner"],
+    "category": "korean",
+    "image": "https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg",
+    "tags": ["rice", "korean", "spicy"]
+  },
+  {
+    "name": "韓式泡菜鍋",
+    "meals": ["lunch", "dinner"],
+    "category": "korean",
+    "image": "https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg",
+    "tags": ["soup", "korean", "spicy"]
+  },
+  {
+    "name": "和風炸豬排套餐",
+    "meals": ["lunch", "dinner"],
+    "category": "japanese",
+    "image": "https://images.pexels.com/photos/357756/pexels-photo-357756.jpeg",
+    "tags": ["pork", "fried", "japanese"]
+  },
+  {
+    "name": "泰式打拋豬",
+    "meals": ["lunch", "dinner"],
+    "category": "thai",
+    "image": "https://images.pexels.com/photos/1397460/pexels-photo-1397460.jpeg",
+    "tags": ["rice", "pork", "spicy", "thai"]
+  },
+  {
+    "name": "蔬食地中海沙拉",
     "meals": ["lunch", "dinner"],
     "category": "healthy",
     "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
-    "tags": ["healthy"]
+    "tags": ["salad", "healthy", "vegetable", "vegan"]
+  },
+  {
+    "name": "義大利肉醬麵",
+    "meals": ["lunch", "dinner"],
+    "category": "western",
+    "image": "https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg",
+    "tags": ["noodle", "beef", "pasta", "western"]
+  },
+  {
+    "name": "泰式綠咖哩雞",
+    "meals": ["lunch", "dinner"],
+    "category": "thai",
+    "image": "https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg",
+    "tags": ["chicken", "curry", "thai", "spicy"]
+  },
+  {
+    "name": "台式鹹酥雞",
+    "meals": ["dinner"],
+    "category": "taiwan",
+    "image": "https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg",
+    "tags": ["fried", "chicken", "taiwan"]
+  },
+  {
+    "name": "火鍋",
+    "meals": ["dinner"],
+    "category": "chinese",
+    "image": "https://images.pexels.com/photos/2474668/pexels-photo-2474668.jpeg",
+    "tags": ["hotpot", "soup", "beef", "vegetable"]
+  },
+  {
+    "name": "鐵板燒",
+    "meals": ["dinner"],
+    "category": "taiwan",
+    "image": "https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg",
+    "tags": ["bbq", "meat", "taiwan"]
+  },
+  {
+    "name": "日式燒肉",
+    "meals": ["dinner"],
+    "category": "japanese",
+    "image": "https://images.pexels.com/photos/357756/pexels-photo-357756.jpeg",
+    "tags": ["bbq", "meat", "japanese"]
+  },
+  {
+    "name": "韓式炸雞",
+    "meals": ["dinner"],
+    "category": "korean",
+    "image": "https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg",
+    "tags": ["fried", "chicken", "korean"]
+  },
+  {
+    "name": "豆皮壽司",
+    "meals": ["lunch", "dinner"],
+    "category": "japanese",
+    "image": "https://images.pexels.com/photos/357756/pexels-photo-357756.jpeg",
+    "tags": ["rice", "tofu", "sweet", "japanese"]
+  },
+  {
+    "name": "燒賣與腸粉",
+    "meals": ["lunch", "dinner"],
+    "category": "hongkong",
+    "image": "https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg",
+    "tags": ["pastry", "meat", "hongkong"]
+  },
+  {
+    "name": "素食佛跳牆",
+    "meals": ["lunch", "dinner"],
+    "category": "vegetarian",
+    "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+    "tags": ["vegetable", "tofu", "soup", "vegan", "healthy"]
+  },
+  {
+    "name": "牛奶吐司+優格",
+    "meals": ["breakfast"],
+    "category": "healthy",
+    "image": "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg",
+    "tags": ["milk", "pastry", "healthy"]
+  },
+  {
+    "name": "港式撈麵",
+    "meals": ["lunch", "dinner"],
+    "category": "hongkong",
+    "image": "https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg",
+    "tags": ["noodle", "pork", "egg", "hongkong"]
+  },
+  {
+    "name": "法式可麗餅",
+    "meals": ["breakfast", "dessert"],
+    "category": "dessert",
+    "image": "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg",
+    "tags": ["egg", "milk", "sweet", "pastry", "western"]
+  },
+  {
+    "name": "蔬菜三明治",
+    "meals": ["breakfast", "lunch"],
+    "category": "healthy",
+    "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+    "tags": ["vegetable", "egg", "healthy"]
+  },
+  {
+    "name": "夏威夷披薩",
+    "meals": ["lunch", "dinner"],
+    "category": "western",
+    "image": "https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg",
+    "tags": ["cheese", "pork", "western"]
+  },
+  {
+    "name": "泰式炒河粉",
+    "meals": ["lunch", "dinner"],
+    "category": "thai",
+    "image": "https://images.pexels.com/photos/1397460/pexels-photo-1397460.jpeg",
+    "tags": ["noodle", "chicken", "egg", "spicy", "thai"]
+  },
+  {
+    "name": "鮮蝦雲吞麵",
+    "meals": ["lunch", "dinner"],
+    "category": "hongkong",
+    "image": "https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg",
+    "tags": ["noodle", "seafood", "hongkong"]
+  },
+  {
+    "name": "水果優格碗",
+    "meals": ["breakfast", "dessert"],
+    "category": "healthy",
+    "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+    "tags": ["fruit", "milk", "healthy"]
+  },
+  {
+    "name": "摩斯漢堡",
+    "meals": ["breakfast", "lunch", "dinner"],
+    "category": "fastfood",
+    "image": "https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg",
+    "tags": ["burger", "chicken", "fastfood"]
+  },
+  {
+    "name": "燻雞凱薩沙拉",
+    "meals": ["lunch", "dinner"],
+    "category": "healthy",
+    "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+    "tags": ["chicken", "salad", "healthy"]
+  },
+  {
+    "name": "麻辣臭豆腐",
+    "meals": ["lunch", "dinner"],
+    "category": "taiwan",
+    "image": "https://images.pexels.com/photos/2474668/pexels-photo-2474668.jpeg",
+    "tags": ["tofu", "spicy", "taiwan"]
+  },
+  {
+    "name": "可頌+熱拿鐵",
+    "meals": ["breakfast", "dessert"],
+    "category": "dessert",
+    "image": "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg",
+    "tags": ["pastry", "milk", "sweet", "western"]
+  },
+  {
+    "name": "咖哩飯",
+    "meals": ["lunch", "dinner"],
+    "category": "japanese",
+    "image": "https://images.pexels.com/photos/357756/pexels-photo-357756.jpeg",
+    "tags": ["rice", "curry", "japanese"]
+  },
+  {
+    "name": "素燴麵",
+    "meals": ["lunch", "dinner"],
+    "category": "vegetarian",
+    "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+    "tags": ["noodle", "vegetable", "vegan"]
   }
 ]
