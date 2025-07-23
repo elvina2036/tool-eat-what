@@ -1,0 +1,16 @@
+body { font-family: 'Noto Sans TC', Arial, sans-serif; background: #faf4fb; color: #522b80; }
+main { max-width: 600px; margin: 2em auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 32px #e0b7ff33; padding: 2em;}
+h1 { text-align: center; color: #883ecf;}
+table { width: 100%; border-collapse: collapse; margin-top: 1.5em;}
+th, td { border: 1px solid #e0b7ff; padding: .6em .3em; text-align: left;}
+th { background: #f7e6ff; }
+tr:hover { background: #f7c8e020;}
+input[type="text"], textarea { width: 98%; padding: .3em; border-radius: 5px; border: 1.2px solid #e0b7ff;}
+button { padding: .5em 1.1em; border: none; background: #c3a0ff; color: #fff; border-radius: 8px; cursor: pointer;}
+button.delete { background: #e57373;}
+button.update { background: #ffd166; color: #a26b00;}
+.row-actions { display: flex; gap: .4em;}
+.add-row { margin-top: 1.3em; padding: .7em; background: #f7e6ff; border-radius: 9px;}
+label { font-weight: 600;}
+.msg { color: #43aa8b; margin: .6em 0;}
+.err { color: #e57373; margin: .6em 0;}

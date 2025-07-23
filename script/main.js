@@ -7,17 +7,41 @@ let currentMeal = 'breakfast';
 let excludedFoods = [];
 let excludeChoices;
 
+// 實用 CSV to JSON 小工具
+function csvToJson(csv) {
+  const lines = csv.split('\n').filter(l => l.trim());
+  const headers = lines[0].split(',').map(h => h.trim());
+  return lines.slice(1).map(line => {
+    // 只簡單處理純文字/數值，有逗號的欄位請預先在 sheet 內加 "" 包裹
+    const values = line.split(',').map(v => v.trim().replace(/^"|"$/g, ''));
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = values[i] ?? '');
+    return obj;
+  });
+}
+
+const SHEET_ID = '1-Ga2cZzG-_L5vzDajcR4xuYEg5lvyuvxsfEqCB_5dGM'; // 換成你自己的
+const SHEET_URL = (tab) =>
+  `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${tab}`;
+
 async function loadAllData() {
+  // meals 仍可本地 json 或同樣放 Sheet
   [categories, meals, tags, foods] = await Promise.all([
-    fetch('resource/categories.json').then(res => res.json()),
+    fetch(SHEET_URL('categories')).then(r => r.text()).then(csvToJson),
     fetch('resource/meals.json').then(res => res.json()),
-    fetch('resource/tags.json').then(res => res.json()),
-    fetch('resource/foods.json').then(res => res.json())
+    fetch(SHEET_URL('tags')).then(r => r.text()).then(csvToJson),
+    fetch(SHEET_URL('foods')).then(r => r.text()).then(csvToJson)
   ]);
+  // foods: meals, tags 都用逗號分隔，需轉陣列
+  foods = foods.map((f, idx) => ({
+    ...f,
+    idx,
+    meals: (f.meals || '').split(',').map(s => s.trim()).filter(Boolean),
+    tags: (f.tags || '').split(',').map(s => s.trim()).filter(Boolean)
+  }));
   categories.forEach(c => maps.category.set(c.id, c));
   meals.forEach(m => maps.meal.set(m.id, m));
   tags.forEach(t => maps.tag.set(t.id, t));
-  foods = foods.map((f, idx) => ({ ...f, idx }));
 }
 
 function getFoodsByMeal(mealId) {
