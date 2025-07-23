@@ -1,11 +1,12 @@
 body { font-family: 'Noto Sans TC', Arial, sans-serif; background: #faf4fb; color: #522b80; }
-main { max-width: 600px; margin: 2em auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 32px #e0b7ff33; padding: 2em;}
+main { max-width: 700px; margin: 2em auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 32px #e0b7ff33; padding: 2em;}
 h1 { text-align: center; color: #883ecf;}
-table { width: 100%; border-collapse: collapse; margin-top: 1.5em;}
+.table-responsive { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 1.5em; min-width: 680px; }
 th, td { border: 1px solid #e0b7ff; padding: .6em .3em; text-align: left;}
-th { background: #f7e6ff; }
+th { background: #f7e6ff; cursor: pointer; user-select: none;}
 tr:hover { background: #f7c8e020;}
-input[type="text"], textarea { width: 98%; padding: .3em; border-radius: 5px; border: 1.2px solid #e0b7ff;}
+input[type="text"], textarea { width: 96%; padding: .3em; border-radius: 5px; border: 1.2px solid #e0b7ff;}
 button { padding: .5em 1.1em; border: none; background: #c3a0ff; color: #fff; border-radius: 8px; cursor: pointer;}
 button.delete { background: #e57373;}
 button.update { background: #ffd166; color: #a26b00;}
@@ -14,3 +15,7 @@ button.update { background: #ffd166; color: #a26b00;}
 label { font-weight: 600;}
 .msg { color: #43aa8b; margin: .6em 0;}
 .err { color: #e57373; margin: .6em 0;}
+@media (max-width: 800px) {
+  main { padding: 0.7em;}
+  table { min-width: 560px; }
+}

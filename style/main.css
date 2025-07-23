@@ -71,7 +71,6 @@ nav {
   display: flex;
   justify-content: center;
   gap: .5em;
-  margin-bottom: 1.2em;
   flex-wrap: wrap;
 }
 .tab {
@@ -151,6 +150,7 @@ legend {
   width: 100% !important;
   min-width: 0 !important;
   box-sizing: border-box !important;
+  margin-top: 0.3em;
 }
 .choices__item--choice {
   background: transparent !important;
@@ -320,6 +320,7 @@ footer a:hover { color: var(--deep-purple); }
   font-size: 1.05em !important;
   font-weight: 600 !important;
   padding: .1em 0 !important;
+  margin: 0;
 }
 
 .choices__input::placeholder {

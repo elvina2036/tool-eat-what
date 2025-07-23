@@ -3,32 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>餐點資料管理 | What2Eat Admin</title>
-  <link rel="stylesheet" href="edit.css">
+  <link rel="stylesheet" href="style/edit.css">
 </head>
 <body>
 <main>
   <h1>餐點資料管理</h1>
   <form id="addForm" class="add-row">
     <label>餐點名稱：<input type="text" id="name" required></label><br>
-    <label>適用餐別（逗號隔開）：<input type="text" id="meals" placeholder="breakfast,lunch,dinner"></label><br>
+    <label>適用餐別（分號;隔開）：<input type="text" id="meals" placeholder="breakfast;lunch;dinner"></label><br>
     <label>圖片連結：<input type="text" id="image"></label><br>
-    <label>標籤（逗號隔開）：<input type="text" id="tags" placeholder="beef,noodle,台式"></label><br>
+    <label>標籤（分號;隔開）：<input type="text" id="tags" placeholder="beef;noodle;台式"></label><br>
     <button type="submit">新增</button>
     <span class="msg" id="msg"></span>
   </form>
-  <table>
-    <thead>
-      <tr>
-        <th>名稱</th>
-        <th>餐別</th>
-        <th>圖片</th>
-        <th>標籤</th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody id="foodsTable"></tbody>
-  </table>
+  <div class="table-responsive">
+    <table id="foodsTable">
+      <thead>
+        <tr>
+          <th data-sort="name">名稱 ▲▼</th>
+          <th data-sort="meals">餐別 ▲▼</th>
+          <th data-sort="image">圖片 ▲▼</th>
+          <th data-sort="tags">標籤 ▲▼</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 </main>
-<script src="edit.js"></script>
+<script src="script/edit.js"></script>
 </body>
 </html>

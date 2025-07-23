@@ -10,10 +10,10 @@ let excludeChoices;
 // 實用 CSV to JSON 小工具
 function csvToJson(csv) {
   const lines = csv.split('\n').filter(l => l.trim());
-  const headers = lines[0].split(',').map(h => h.trim());
+  const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim());
   return lines.slice(1).map(line => {
     // 只簡單處理純文字/數值，有逗號的欄位請預先在 sheet 內加 "" 包裹
-    const values = line.split(',').map(v => v.trim().replace(/^"|"$/g, ''));
+    const values = line.split(',').map(v => v.replace(/^"|"$/g, '').trim());
     const obj = {};
     headers.forEach((h, i) => obj[h] = values[i] ?? '');
     return obj;
@@ -36,8 +36,8 @@ async function loadAllData() {
   foods = foods.map((f, idx) => ({
     ...f,
     idx,
-    meals: (f.meals || '').split(',').map(s => s.trim()).filter(Boolean),
-    tags: (f.tags || '').split(',').map(s => s.trim()).filter(Boolean)
+    meals: (f.meals || '').split(';').map(s => s.trim()).filter(Boolean),
+    tags: (f.tags || '').split(';').map(s => s.trim()).filter(Boolean)
   }));
   categories.forEach(c => maps.category.set(c.id, c));
   meals.forEach(m => maps.meal.set(m.id, m));
@@ -113,7 +113,7 @@ function showResult(meal) {
       分類：${cat?.icon || ''} ${cat?.name || pick.category}<br>
       標籤：${tagNames}
     </div>
-    <img src="${pick.image}" alt="${pick.name}" class="pick-img">
+    ${pick.image ? `<img src="${pick.image}" alt="${pick.name}" class="pick-img">` : ''}
   `;
 }
 

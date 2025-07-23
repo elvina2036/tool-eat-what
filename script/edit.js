@@ -1,11 +1,15 @@
 // 請將這一行換成你自己的 Apps Script Web App API 網址
-const API_URL = "hhttps://script.google.com/macros/s/AKfycbyTP7vUxDNwX4rB_6XNj4H9y69iA-mbuh38titPpMa2esYhiuQDUdh998gx1lLKCFKA/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbz7dLKiL4IQoq-pQOu20xSxAkH3q4mb1kOTGrWRH0nsRQBtDurmRaVnLr4HtCb48oBh/exec";
 
-// 讀取所有餐點資料
+let foodsData = [];
+let sortField = null;
+let sortAsc = true;
+
 async function loadFoods() {
   let res = await fetch(API_URL);
   let data = await res.json();
-  renderTable(data);
+  foodsData = data;
+  renderTable();
 }
 
 // 新增餐點
@@ -28,11 +32,19 @@ document.getElementById('addForm').onsubmit = async (e) => {
   loadFoods();
 }
 
-// 渲染餐點表格
-function renderTable(data) {
-  const tb = document.getElementById('foodsTable');
+function renderTable() {
+  const tb = document.querySelector('#foodsTable tbody');
   tb.innerHTML = '';
-  data.forEach(item => {
+  // 排序
+  let showData = [...foodsData];
+  if (sortField) {
+    showData.sort((a, b) => {
+      let v1 = a[sortField] ? a[sortField].toLowerCase() : "";
+      let v2 = b[sortField] ? b[sortField].toLowerCase() : "";
+      return (v1 > v2 ? 1 : (v1 < v2 ? -1 : 0)) * (sortAsc ? 1 : -1);
+    });
+  }
+  showData.forEach(item => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><input type="text" value="${item.name}" class="name"></td>
@@ -44,7 +56,7 @@ function renderTable(data) {
         <button class="delete">刪除</button>
       </td>
     `;
-    // 更新功能
+    // 更新
     tr.querySelector('.update').onclick = async () => {
       let obj = {
         name: tr.querySelector('.name').value.trim(),
@@ -61,7 +73,7 @@ function renderTable(data) {
       alert(result.result === "updated" ? "已更新" : "更新失敗");
       loadFoods();
     }
-    // 刪除功能
+    // 刪除
     tr.querySelector('.delete').onclick = async () => {
       if (!confirm("確定要刪除嗎？")) return;
       let url = API_URL + "?name=" + encodeURIComponent(item.name);
@@ -74,5 +86,14 @@ function renderTable(data) {
   });
 }
 
-// 頁面載入時自動讀取資料
+// 支援點欄位排序
+document.querySelectorAll('#foodsTable th[data-sort]').forEach(th => {
+  th.addEventListener('click', function() {
+    let field = th.getAttribute('data-sort');
+    if (sortField === field) sortAsc = !sortAsc;
+    else { sortField = field; sortAsc = true; }
+    renderTable();
+  });
+});
+
 loadFoods();
