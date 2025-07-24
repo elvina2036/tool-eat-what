@@ -1,8 +1,7 @@
 let foods = [];
-let categories = [];
 let meals = [];
 let tags = [];
-const maps = { category: new Map(), meal: new Map(), tag: new Map() };
+const maps = { meal: new Map(), tag: new Map() };
 let currentMeal = 'breakfast';
 let excludedFoods = [];
 let excludeChoices;
@@ -26,8 +25,7 @@ const SHEET_URL = (tab) =>
 
 async function loadAllData() {
   // meals 仍可本地 json 或同樣放 Sheet
-  [categories, meals, tags, foods] = await Promise.all([
-    fetch(SHEET_URL('categories')).then(r => r.text()).then(csvToJson),
+  [meals, tags, foods] = await Promise.all([
     fetch('resource/meals.json').then(res => res.json()),
     fetch(SHEET_URL('tags')).then(r => r.text()).then(csvToJson),
     fetch(SHEET_URL('foods')).then(r => r.text()).then(csvToJson)
@@ -39,7 +37,6 @@ async function loadAllData() {
     meals: (f.meals || '').split(';').map(s => s.trim()).filter(Boolean),
     tags: (f.tags || '').split(';').map(s => s.trim()).filter(Boolean)
   }));
-  categories.forEach(c => maps.category.set(c.id, c));
   meals.forEach(m => maps.meal.set(m.id, m));
   tags.forEach(t => maps.tag.set(t.id, t));
 }
@@ -49,23 +46,26 @@ function getFoodsByMeal(mealId) {
 }
 
 function renderMealTabs() {
-  const nav = document.getElementById('meal-tabs');
-  nav.innerHTML = '';
-  meals.forEach(meal => {
-    const btn = document.createElement('button');
-    btn.className = 'tab' + (meal.id === currentMeal ? ' active' : '');
-    btn.textContent = `${meal.emoji} ${meal.name}`;
-    btn.setAttribute('data-meal', meal.id);
-    btn.onclick = () => {
-      if (meal.id !== currentMeal) {
-        currentMeal = meal.id;
-        excludedFoods = [];
-        renderMealTabs();
-        renderExcludeSelect(currentMeal);
-        document.getElementById('result').innerHTML = '';
-      }
-    };
-    nav.appendChild(btn);
+  // 渲染
+  const nav = document.querySelector('.meals-nav');
+  nav.innerHTML = meals.map(m =>
+    `<button class="meals-nav-btn" data-meal="${m.id}">
+      <span class="emoji">${m.emoji}</span>
+      <span class="meal-name">${m.name}</span>
+    </button>`
+  ).join('');
+
+  // 綁定點擊事件與 active 狀態
+  const navBtns = nav.querySelectorAll('.meals-nav-btn');
+  navBtns.forEach((btn, idx) => {
+    btn.addEventListener('click', function() {
+      navBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const meal = this.getAttribute('data-meal');
+      showResult(meal); // 你的切換邏輯
+      // nav.scrollLeft = btn.offsetLeft - nav.offsetWidth / 2 + btn.offsetWidth / 2; // 可選: 點擊自動居中
+    });
+    if(idx === 0) btn.classList.add('active');
   });
 }
 
@@ -103,14 +103,12 @@ function showResult(meal) {
     return;
   }
   const pick = options[Math.floor(Math.random() * options.length)];
-  const cat = maps.category.get(pick.category);
   const tagNames = pick.tags.map(id => maps.tag.get(id)?.name || id).join("、");
   resultDiv.innerHTML = `
     <span class="emoji">${maps.meal.get(meal)?.emoji || ''}</span>
     <strong>${maps.meal.get(meal)?.name || ''}建議：</strong>
     <span>${pick.name}</span>
     <div class="pick-info">
-      分類：${cat?.icon || ''} ${cat?.name || pick.category}<br>
       標籤：${tagNames}
     </div>
     ${pick.image ? `<img src="${pick.image}" alt="${pick.name}" class="pick-img">` : ''}

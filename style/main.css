@@ -67,32 +67,6 @@ header {
 }
 .subtitle .en { font-size: .98em; color: #b9a7d1; }
 
-nav {
-  display: flex;
-  justify-content: center;
-  gap: .5em;
-  flex-wrap: wrap;
-}
-.tab {
-  background: var(--brand-purple);
-  border: none;
-  padding: 0.72em 1.45em;
-  border-radius: 18px 18px 0 0;
-  font-size: 1.01em;
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background .18s, box-shadow .15s;
-  outline: none;
-  box-shadow: 0 2px 8px #c3a0ff22;
-  margin-bottom: -2px;
-}
-.tab.active, .tab:hover {
-  background: var(--deep-purple);
-  color: #fff;
-  box-shadow: 0 4px 16px #c3a0ff44;
-}
-
 .card {
   background: var(--card-bg);
   border-radius: 22px;

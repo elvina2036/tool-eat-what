@@ -1,5 +1,8 @@
 [
   { "id": "breakfast", "name": "早餐", "emoji": "🍳" },
+  { "id": "brunch", "name": "早午餐", "emoji": "🥗" },
   { "id": "lunch", "name": "午餐", "emoji": "🍱" },
-  { "id": "dinner", "name": "晚餐", "emoji": "🍜" }
+  { "id": "afternoon tea", "name": "下午茶", "emoji": "🍨" },
+  { "id": "dinner", "name": "晚餐", "emoji": "🍜" },
+  { "id": "late-night snack", "name": "消夜", "emoji": "🍟" }
 ]
