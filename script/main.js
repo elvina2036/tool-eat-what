@@ -35,11 +35,11 @@ async function loadAllData() {
   foods = foods.map((f, idx) => ({
     ...f,
     idx,
-    meals: (f.meals || '').split(';').map(s => s.trim()).filter(Boolean),
-    tags: (f.tags || '').split(';').map(s => s.trim()).filter(Boolean)
+    meals: (f.meals || '').split(';').map(s => s.trim().toLowerCase()).filter(Boolean),
+    tags: (f.tags || '').split(';').map(s => s.trim().toLowerCase()).filter(Boolean)
   }));
-  meals.forEach(m => maps.meal.set(m.id, m));
-  tags.forEach(t => maps.tag.set(t.id, t));
+  meals.forEach(m => maps.meal.set(m.id.toLowerCase(), m));
+  tags.forEach(t => maps.tag.set(t.id.toLowerCase(), t));
 }
 
 function getFoodsByMeal(mealId) {
