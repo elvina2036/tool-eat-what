@@ -1,26 +1,23 @@
-.meals-nav.sticky {
-  position: sticky;
-  top: 0;
-  z-index: 990;
-  box-shadow: 0 7px 32px #e3b7ff44, 0 1.5px 6px #e0b7ff22;
-  background: linear-gradient(120deg, #f7ecff 60%, #f3e6fa 100%);
-}
-
 .meals-nav {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; /* 一定要nowrap才能水平滑動 */
   gap: 1em;
-  justify-content: center;
-  padding: 0.9em 0.5em 0.55em 0.5em;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 0.8em 0.5em 0.55em 0.5em;
   margin: 2em 0 1.5em 0;
   background: #faf4fb;
-  overflow-x: auto;
+  overflow-x: auto; /* 這個關鍵！*/
+  overflow-y: visible;
   scrollbar-width: thin;
   scrollbar-color: #d6a8ff #f3e6fa;
-  border-radius: 2.5em 2.5em 1.3em 1.3em/2.5em 2.5em 1.6em 1.6em;
+  border-radius: 2em;
   box-shadow: 0 6px 24px #e0b7ff30, 0 1.5px 8px #e0b7ff18;
   position: relative;
+  min-width: 0;
+  -webkit-overflow-scrolling: touch;
 }
+
 .meals-nav::-webkit-scrollbar {
   height: 8px;
   background: #f3e6fa;
@@ -31,17 +28,17 @@
 }
 
 .meals-nav-btn {
-  flex: 0 0 auto;
+  flex: 0 0 auto; /* 保持寬度，絕不壓縮 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 74px;
+  min-width: 78px;
   background: #fff;
   border: none;
   border-radius: 24px;
   box-shadow: 0 2px 10px #e0b7ff22;
-  padding: 0.62em 1.2em 0.22em 1.2em;
-  font-size: 1.08em;
+  padding: 0.65em 1.2em 0.22em 1.2em;
+  font-size: 1em;
   color: #883ecf;
   font-weight: 500;
   cursor: pointer;
@@ -50,60 +47,69 @@
   position: relative;
   transition: background 0.17s, box-shadow 0.19s, transform 0.17s, color 0.13s;
 }
+
 .meals-nav-btn .emoji {
-  font-size: 2.12em;
-  margin-bottom: 0.06em;
+  font-size: 2.1em;
+  margin-bottom: 0.05em;
   display: block;
-  transition: transform 0.18s cubic-bezier(.6,-0.28,.74,.05);
-  will-change: transform;
-  filter: drop-shadow(0 3px 12px #e0b7ff33);
+  transition: transform 0.16s;
 }
+
 .meals-nav-btn .meal-name {
   margin-top: 0.01em;
   letter-spacing: 1px;
 }
+
+/* Active 狀態可保留 */
 .meals-nav-btn.active,
 .meals-nav-btn:focus {
   background: linear-gradient(130deg, #f3e6fa 0%, #e9d1fc 100%);
   color: #522b80;
   box-shadow: 0 6px 24px #c3a0ff55, 0 1.5px 8px #e0b7ff33;
-  transform: scale(1.12);
+  transform: scale(1.11);
   font-weight: bold;
 }
+
 .meals-nav-btn.active .emoji,
 .meals-nav-btn:focus .emoji {
-  transform: scale(1.18) translateY(-2px);
+  transform: scale(1.15) translateY(-2px);
 }
+
 .meals-nav-btn:hover,
 .meals-nav-btn:active {
-  background: linear-gradient(130deg, #e6d6ff 30%, #fbeaff 100%);
+  background: linear-gradient(120deg, #e6d6ff 30%, #fbeaff 100%);
   color: #9145da;
   box-shadow: 0 7px 32px #d5a0ff55, 0 2px 12px #e0b7ff33;
   transform: scale(1.08);
 }
 .meals-nav-btn:hover .emoji,
 .meals-nav-btn:active .emoji {
-  transform: scale(1.14) translateY(-1.5px) rotate(-6deg);
+  transform: scale(1.13) translateY(-1.5px) rotate(-6deg);
 }
-@media (hover: none) and (pointer: coarse) {
-  .meals-nav-btn:hover {
-    background: #f7ecff;
-    box-shadow: 0 6px 22px #e0b7ff33;
-  }
-}
+
 @media (max-width: 700px) {
   .meals-nav {
-    gap: 0.24em;
-    padding: 0.49em 0.11em 0.22em 0.11em;
+    gap: 0.18em;
+    padding: 0.5em 0.07em 0.18em 0.07em;
     border-radius: 1.1em;
   }
   .meals-nav-btn {
-    font-size: 0.97em;
-    padding: 0.44em 0.48em 0.08em 0.48em;
-    min-width: 58px;
+    font-size: 0.96em;
+    padding: 0.44em 0.50em 0.08em 0.50em;
+    min-width: 62px;
     border-radius: 17px;
   }
   .meals-nav-btn .emoji {
-    font-size: 1.45em;
+    font-size: 1.35em;
+  }
+}
+
+@media (min-width: 701px) {
+  .meals-nav {
+    overflow-x: hidden; /* 不出現橫向滾輪 */
+  }
+  .meals-nav-btn {
+    flex: 1 1 0;      /* 讓每個按鈕自動縮小到能全部塞進一行 */
+    min-width: 62px;  /* 最小寬度避免壓到看不到字 */
   }
 }

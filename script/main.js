@@ -3,6 +3,7 @@ let meals = [];
 let tags = [];
 const maps = { meal: new Map(), tag: new Map() };
 let currentMeal = 'breakfast';
+let selectedTags = [];
 let excludedFoods = [];
 let excludeChoices;
 
@@ -46,7 +47,6 @@ function getFoodsByMeal(mealId) {
 }
 
 function renderMealTabs() {
-  // 渲染
   const nav = document.querySelector('.meals-nav');
   nav.innerHTML = meals.map(m =>
     `<button class="meals-nav-btn" data-meal="${m.id}">
@@ -55,22 +55,58 @@ function renderMealTabs() {
     </button>`
   ).join('');
 
-  // 綁定點擊事件與 active 狀態
   const navBtns = nav.querySelectorAll('.meals-nav-btn');
   navBtns.forEach((btn, idx) => {
     btn.addEventListener('click', function() {
       navBtns.forEach(b => b.classList.remove('active'));
       this.classList.add('active');
       const meal = this.getAttribute('data-meal');
-      showResult(meal); // 你的切換邏輯
-      // nav.scrollLeft = btn.offsetLeft - nav.offsetWidth / 2 + btn.offsetWidth / 2; // 可選: 點擊自動居中
+      currentMeal = meal;
+      selectedTags = [];
+      document.getElementById('result').innerHTML = '';
+      renderTagChips();
+      renderExcludeSelect(meal);
     });
     if(idx === 0) btn.classList.add('active');
   });
 }
 
+function renderTagChips() {
+  // 只顯示當前餐別下有出現過的 tags
+  const tagNav = document.querySelector('.tags-nav');
+  const tagsSet = new Set(
+    foods.filter(f => f.meals.includes(currentMeal)).flatMap(f => f.tags)
+  );
+  const tagsArr = Array.from(tagsSet).sort();
+  tagNav.innerHTML = tagsArr.map(t =>
+    `<button class="tag-chip${selectedTags.includes(t) ? ' active' : ''}" data-tag="${t}">${maps.tag.get(t)?.name || t}</button>`
+  ).join('');
+
+  // 綁定 chips 點擊，多選篩選
+  tagNav.querySelectorAll('.tag-chip').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const tag = this.dataset.tag;
+      if (selectedTags.includes(tag)) {
+        selectedTags = selectedTags.filter(tg => tg !== tag);
+        this.classList.remove('active');
+      } else {
+        selectedTags.push(tag);
+        this.classList.add('active');
+      }
+
+      document.getElementById('result').innerHTML = '';
+      renderExcludeSelect(currentMeal);
+    });
+  });
+}
+
 function renderExcludeSelect(meal) {
-  const available = getFoodsByMeal(meal);
+  let available = getFoodsByMeal(meal);
+  if (selectedTags.length > 0) {
+    available = available.filter(f =>
+      selectedTags.every(tag => f.tags.includes(tag))
+    );
+  }
   const select = document.getElementById('exclude-select');
   select.innerHTML = '';
   available.forEach(f => {
@@ -97,7 +133,10 @@ function renderExcludeSelect(meal) {
 
 function showResult(meal) {
   const resultDiv = document.getElementById('result');
-  const options = getFoodsByMeal(meal).filter(item => !excludedFoods.includes(item.idx));
+  let options = getFoodsByMeal(meal).filter(item => !excludedFoods.includes(item.idx));
+  if(selectedTags.length > 0) {
+    options = options.filter(o => selectedTags.every(t => o.tags.includes(t)));
+  }
   if (options.length === 0) {
     resultDiv.innerHTML = "你是不是太挑食啦？沒東西剩下可以選了！🥲";
     return;
@@ -118,6 +157,7 @@ function showResult(meal) {
 document.addEventListener('DOMContentLoaded', async () => {
   await loadAllData();
   renderMealTabs();
+  renderTagChips();
   renderExcludeSelect(currentMeal);
 
   document.getElementById('random-btn').addEventListener('click', () => {

@@ -1,0 +1,48 @@
+.tags-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em 0.5em;
+  justify-content: center;
+  margin: 1.5em 0 1.1em 0;
+  background: #faf4fb;
+  border-radius: 1.5em;
+  padding: 0.85em 0.5em 0.3em 0.5em;
+}
+.tag-chip {
+  background: linear-gradient(120deg,#fff 50%,#f3e7fc 100%);
+  color: #8533c3;
+  border: none;
+  border-radius: 999em;
+  padding: 0.38em 1.18em 0.38em 1.18em;
+  font-size: 1em;
+  font-weight: 500;
+  box-shadow: 0 1px 8px #e0b7ff18, 0 0.5px 3px #cdb7ef18;
+  cursor: pointer;
+  transition: 
+    background 0.16s cubic-bezier(.43,1.12,.71,1.13), 
+    color 0.12s,
+    box-shadow 0.16s,
+    transform 0.15s;
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+  outline: none;
+  position: relative;
+  user-select: none;
+}
+.tag-chip:hover,
+.tag-chip:focus-visible {
+  background: linear-gradient(120deg, #ebd6ff 0%, #ffd8f9 100%);
+  color: #5b2a93;
+  box-shadow: 0 4px 16px #e0b7ff33;
+  transform: translateY(-2px) scale(1.06);
+}
+.tag-chip.active,
+.tag-chip.active:focus {
+  background: linear-gradient(130deg,#e5d0fd 10%, #f6d1f7 90%);
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 6px 20px #cda7f044, 0 2px 10px #ffcaf322;
+  border: 1.5px solid #bc7cff99;
+  transform: scale(1.13);
+  z-index: 2;
+}
