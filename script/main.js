@@ -6,6 +6,8 @@ let currentMeal = 'breakfast';
 let selectedTags = [];
 let excludedFoods = [];
 let excludeChoices;
+let excludedTags = [];
+let excludeTagChoices;
 
 // 實用 CSV to JSON 小工具
 function csvToJson(csv) {
@@ -107,6 +109,7 @@ function renderExcludeSelect(meal) {
       selectedTags.every(tag => f.tags.includes(tag))
     );
   }
+  renderExcludeTagSelect(available);
   const select = document.getElementById('exclude-select');
   select.innerHTML = '';
   available.forEach(f => {
@@ -131,11 +134,39 @@ function renderExcludeSelect(meal) {
   });
 }
 
+function renderExcludeTagSelect(availableFoods) {
+  const select = document.getElementById('exclude-tag-select');
+  select.innerHTML = '';
+  const tagsSet = new Set(availableFoods.flatMap(f => f.tags));
+  Array.from(tagsSet).sort().forEach(tag => {
+    const opt = document.createElement('option');
+    opt.value = tag;
+    opt.text = maps.tag.get(tag)?.name || tag;
+    select.appendChild(opt);
+  });
+  if (excludeTagChoices) excludeTagChoices.destroy();
+  excludeTagChoices = new Choices(select, {
+    removeItemButton: true,
+    placeholderValue: '點擊或輸入關鍵字選擇要排除的標籤…',
+    noResultsText: '沒有找到這個標籤',
+    searchResultLimit: 12,
+    shouldSort: false
+  });
+  excludeTagChoices.setValue([]);
+  excludedTags = [];
+  select.addEventListener('change', () => {
+    excludedTags = Array.from(select.selectedOptions).map(o => o.value);
+  });
+}
+
 function showResult(meal) {
   const resultDiv = document.getElementById('result');
   let options = getFoodsByMeal(meal).filter(item => !excludedFoods.includes(item.idx));
   if(selectedTags.length > 0) {
     options = options.filter(o => selectedTags.every(t => o.tags.includes(t)));
+  }
+  if(excludedTags.length > 0) {
+    options = options.filter(o => !excludedTags.some(t => o.tags.includes(t)));
   }
   if (options.length === 0) {
     resultDiv.innerHTML = "你是不是太挑食啦？沒東西剩下可以選了！🥲";

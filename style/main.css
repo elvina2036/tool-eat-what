@@ -91,7 +91,8 @@ legend {
 
 /* Choices.js + select 多選自適應同寬 */
 #exclude-select,
-.choices__inner, 
+#exclude-tag-select,
+.choices__inner,
 .choices__list--multiple .choices__item {
   width: 100% !important;
   max-width: 100% !important;
@@ -263,6 +264,7 @@ footer a:hover { color: var(--deep-purple); }
 
 /* 讓 choices 下拉與容器一致 */
 #exclude-select,
+#exclude-tag-select,
 .choices,
 .choices__inner {
   width: 100% !important;
