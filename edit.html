@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>餐點資料管理 | What2Eat Admin</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style/edit.css">
 </head>
 <body>
 <main>
   <h1>餐點資料管理</h1>
   <form id="addForm" class="add-row">
-    <label>餐點名稱：<input type="text" id="name" required></label><br>
-    <label>適用餐別（分號;隔開）：<input type="text" id="meals" placeholder="breakfast;lunch;dinner"></label><br>
-    <label>圖片連結：<input type="text" id="image"></label><br>
-    <label>標籤（分號;隔開）：<input type="text" id="tags" placeholder="beef;noodle;台式"></label><br>
-    <button type="submit">新增</button>
-    <span class="msg" id="msg"></span>
+    <label>餐點名稱<input type="text" id="name" required placeholder="e.g. 牛肉麵"></label>
+    <label>適用餐別（分號;隔開）<input type="text" id="meals" placeholder="breakfast;lunch;dinner"></label>
+    <label>圖片連結<input type="text" id="image" placeholder="https://..."></label>
+    <label>標籤（分號;隔開）<input type="text" id="tags" placeholder="beef;noodle;台式"></label>
+    <div class="form-actions">
+      <button type="submit">新增餐點</button>
+      <span class="msg" id="msg"></span>
+    </div>
   </form>
   <div class="table-responsive">
     <table id="foodsTable">

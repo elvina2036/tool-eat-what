@@ -4,49 +4,199 @@
   <meta charset="UTF-8">
   <title>三餐隨機決定器 | What2Eat</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <!-- 字體 -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Choices.js CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
   <link rel="stylesheet" href="style/main.css">
   <link rel="stylesheet" href="style/meals-nav.css">
   <link rel="stylesheet" href="style/tags-nav.css">
 </head>
 <body>
-  <a href="edit.html" style="
-    position: fixed;
-    bottom: 30px; right: 32px;
-    width: 60px; height: 60px; border-radius: 50%;
-    background: #c3a0ff; color: #fff; font-size: 2em; text-align: center; line-height: 60px;
-    box-shadow: 0 4px 18px #c3a0ff44; z-index: 1200; text-decoration: none;
-    transition: background .16s;
-  " title="編輯餐點">&#9881;</a>
+  <a href="edit.html" class="edit-fab" title="編輯餐點">&#9881;</a>
   <div class="site-bg"></div>
   <main>
     <header>
-      <div class="brand-logo">🍽️</div>
+      <div class="brand-banner">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 108" fill="none" role="img" aria-label="What 2 Eat banner">
+          <defs>
+            <linearGradient id="bb-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#180d2e"/>
+              <stop offset="100%" stop-color="#0c0818"/>
+            </linearGradient>
+            <linearGradient id="bb-border" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#7c3aed" stop-opacity="0"/>
+              <stop offset="25%"  stop-color="#a855f7"/>
+              <stop offset="55%"  stop-color="#e879f9"/>
+              <stop offset="80%"  stop-color="#818cf8"/>
+              <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="bb-utensil" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stop-color="#e2c9ff"/>
+              <stop offset="100%" stop-color="#818cf8"/>
+            </linearGradient>
+            <linearGradient id="bb-bowl-body" x1="0%" y1="0%" x2="60%" y2="100%">
+              <stop offset="0%"   stop-color="#3b1478"/>
+              <stop offset="100%" stop-color="#1e0a44"/>
+            </linearGradient>
+            <linearGradient id="bb-bowl-rim" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#c084fc"/>
+              <stop offset="50%"  stop-color="#f0abfc"/>
+              <stop offset="100%" stop-color="#818cf8"/>
+            </linearGradient>
+            <radialGradient id="bb-bowl-glow" cx="50%" cy="80%" r="55%">
+              <stop offset="0%"   stop-color="#a855f7" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="bb-glow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="3.5" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="bb-glow-lg" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="7" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- Panel bg -->
+          <rect width="540" height="108" rx="20" fill="url(#bb-bg)"/>
+          <!-- Top shimmer border -->
+          <line x1="70" y1="0.8" x2="470" y2="0.8" stroke="url(#bb-border)" stroke-width="1.5" opacity="0.55"/>
+          <!-- Bottom line -->
+          <line x1="70" y1="107.2" x2="470" y2="107.2" stroke="url(#bb-border)" stroke-width="1" opacity="0.25"/>
+
+          <!-- Background blobs -->
+          <ellipse cx="270" cy="78" rx="140" ry="52" fill="url(#bb-bowl-glow)"/>
+          <ellipse cx="430" cy="22" rx="70" ry="45" fill="#e879f9" fill-opacity="0.05"/>
+          <ellipse cx="90"  cy="88" rx="65" ry="38" fill="#818cf8" fill-opacity="0.05"/>
+
+          <!-- ═══ FORK ═══ -->
+          <g filter="url(#bb-glow)" opacity="0.88">
+            <!-- Handle -->
+            <rect x="101" y="58" width="5" height="38" rx="2.5" fill="url(#bb-utensil)"/>
+            <!-- Tines -->
+            <rect x="93"  y="27" width="3.2" height="25" rx="1.6" fill="url(#bb-utensil)"/>
+            <rect x="99"  y="27" width="3.2" height="25" rx="1.6" fill="url(#bb-utensil)"/>
+            <rect x="105" y="27" width="3.2" height="25" rx="1.6" fill="url(#bb-utensil)"/>
+            <!-- Tine bridge -->
+            <path d="M93 52 Q103 58 108 52" stroke="url(#bb-utensil)" stroke-width="2.8" stroke-linecap="round"/>
+          </g>
+
+          <!-- ═══ KNIFE ═══ -->
+          <g filter="url(#bb-glow)" opacity="0.88">
+            <!-- Handle -->
+            <rect x="433" y="58" width="5" height="38" rx="2.5" fill="url(#bb-utensil)"/>
+            <!-- Blade -->
+            <path d="M433 27 L433 56 Q444 54 446 40 Q447 26 433 27 Z" fill="url(#bb-utensil)"/>
+            <!-- Spine line -->
+            <line x1="433" y1="29" x2="433" y2="55" stroke="white" stroke-width=".8" stroke-opacity="0.2"/>
+          </g>
+
+          <!-- ═══ BOWL ═══ -->
+          <!-- Shadow glow under bowl -->
+          <ellipse cx="270" cy="99" rx="62" ry="7" fill="#a855f7" fill-opacity="0.2" filter="url(#bb-glow-lg)"/>
+          <!-- Bowl body -->
+          <path d="M205 73 Q207 102 270 102 Q333 102 335 73 Z" fill="url(#bb-bowl-body)"/>
+          <!-- Bowl left shine -->
+          <path d="M206 73 Q205 88 215 97" stroke="#c084fc" stroke-width="1.2" stroke-opacity="0.2" fill="none"/>
+          <!-- Bowl rim dark inner -->
+          <ellipse cx="270" cy="73" rx="65" ry="11.5" fill="#120730"/>
+          <!-- Bowl rim gradient -->
+          <ellipse cx="270" cy="73" rx="65" ry="11.5" fill="none" stroke="url(#bb-bowl-rim)" stroke-width="3"/>
+          <!-- Rim top highlight -->
+          <path d="M222 68 Q270 63 318 68" stroke="white" stroke-width="1" stroke-opacity="0.1" fill="none"/>
+
+          <!-- ── Food inside bowl ── -->
+          <!-- Noodles layer 1 -->
+          <path d="M225 72 Q248 62 270 72 Q292 82 315 72" stroke="#fbbf24" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.88"/>
+          <!-- Noodles layer 2 -->
+          <path d="M233 68 Q255 59 278 68" stroke="#fb923c" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.6"/>
+          <!-- Chashu (pork) -->
+          <ellipse cx="250" cy="68" rx="10" ry="6.5" fill="#fca5a5" opacity="0.9"/>
+          <path d="M241 67 Q250 64 259 67" stroke="#f87171" stroke-width="1" fill="none" opacity="0.6"/>
+          <!-- Green onion / veggie -->
+          <ellipse cx="287" cy="68" rx="7" ry="4.5" fill="#86efac" opacity="0.85"/>
+          <!-- Egg -->
+          <circle cx="270" cy="66" r="6" fill="#fef9c3" opacity="0.85"/>
+          <circle cx="270" cy="66" r="3.5" fill="#fbbf24" opacity="0.95"/>
+
+          <!-- ═══ STEAM (animated) ═══ -->
+          <g>
+            <path id="s1" d="M248 62 Q243 51 248 39 Q253 27 248 15" stroke="#c084fc" stroke-width="2.8" stroke-linecap="round" fill="none">
+              <animateTransform attributeName="transform" type="translate" values="0,0; 3,0; 0,0" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.65;0.15;0.65" dur="2.5s" repeatCount="indefinite"/>
+            </path>
+            <path d="M270 59 Q265 46 270 33 Q275 20 270 7" stroke="#e879f9" stroke-width="2.8" stroke-linecap="round" fill="none">
+              <animateTransform attributeName="transform" type="translate" values="0,0; -3,0; 0,0" dur="2.1s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2.1s" repeatCount="indefinite"/>
+            </path>
+            <path d="M292 62 Q297 50 292 37 Q287 24 292 12" stroke="#818cf8" stroke-width="2.2" stroke-linecap="round" fill="none">
+              <animateTransform attributeName="transform" type="translate" values="0,0; 2,0; 0,0" dur="1.9s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.5;0.1;0.5" dur="1.9s" repeatCount="indefinite"/>
+            </path>
+          </g>
+
+          <!-- ═══ SPARKLES ═══ -->
+          <!-- Large 4-pt star left -->
+          <g transform="translate(158,26)" filter="url(#bb-glow)">
+            <path d="M0,-10 L2.2,-2.2 L10,0 L2.2,2.2 L0,10 L-2.2,2.2 L-10,0 L-2.2,-2.2 Z" fill="#e879f9" opacity="0.9"/>
+          </g>
+          <!-- Small cross left -->
+          <g transform="translate(174,72)">
+            <path d="M0,-5.5 L1.2,-1.2 L5.5,0 L1.2,1.2 L0,5.5 L-1.2,1.2 L-5.5,0 L-1.2,-1.2 Z" fill="#c084fc" opacity="0.6"/>
+          </g>
+          <!-- Large 4-pt star right -->
+          <g transform="translate(382,28)" filter="url(#bb-glow)">
+            <path d="M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z" fill="#c084fc" opacity="0.85"/>
+          </g>
+          <!-- Small cross right -->
+          <g transform="translate(366,76)">
+            <path d="M0,-4.5 L1,-1 L4.5,0 L1,1 L0,4.5 L-1,1 L-4.5,0 L-1,-1 Z" fill="#818cf8" opacity="0.55"/>
+          </g>
+
+          <!-- Decorative dots -->
+          <circle cx="140" cy="55" r="3"   fill="#818cf8"  opacity="0.5"/>
+          <circle cx="158" cy="88" r="3.5" fill="#e879f9"  opacity="0.4"/>
+          <circle cx="148" cy="42" r="1.8" fill="#fbbf24"  opacity="0.55"/>
+          <circle cx="390" cy="82" r="3"   fill="#c084fc"  opacity="0.45"/>
+          <circle cx="404" cy="55" r="2.2" fill="#e879f9"  opacity="0.4"/>
+          <circle cx="396" cy="42" r="1.8" fill="#fb923c"  opacity="0.5"/>
+        </svg>
+      </div>
       <h1 class="main-title">What <span class="highlight">2</span> Eat?</h1>
-      <p class="subtitle">三餐隨機決定器<br><span class="en">Let randomness set you free!</span></p>
+      <p class="subtitle">三餐隨機決定器&ensp;<span class="en">Let randomness set you free!</span></p>
     </header>
-    <nav class="meals-nav sticky"></nav>
-    <div class="tags-nav"></div>
-    <section class="card">
-      <fieldset>
-        <legend>今天不想吃（可多選）：</legend>
-        <select id="exclude-select" multiple></select>
-      </fieldset>
-      <button class="random-btn" id="random-btn">
-        <span class="btn-emoji">🎲</span> 隨機決定
-      </button>
-      <div class="result" id="result"></div>
-    </section>
+
+    <div class="layout-body">
+      <aside class="sidebar">
+        <nav class="meals-nav"></nav>
+        <div class="tags-nav"></div>
+      </aside>
+
+      <div class="content-area">
+        <section class="card">
+          <fieldset>
+            <legend>今天不想吃（可多選）</legend>
+            <select id="exclude-select" multiple></select>
+          </fieldset>
+
+          <button class="random-btn" id="random-btn">
+            <span class="btn-dice"></span>
+            <span class="btn-text">隨機決定</span>
+          </button>
+
+          <div class="result" id="result"></div>
+
+          <div class="result-actions" id="result-actions">
+            <button class="again-btn" id="again-btn">再選一次</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
     <footer>
-      <p>
-        <a href="https://github.com/elvina2036/" target="_blank">made by Serelis</a>
-      </p>
+      <p><a href="https://github.com/elvina2036/" target="_blank">made by Serelis</a></p>
     </footer>
   </main>
-  <!-- Choices.js JS -->
+
   <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
   <script src="script/main.js"></script>
 </body>
